@@ -1,0 +1,62 @@
+.container{
+    margin-top: 60px;
+    place-items: center;
+}
+
+
+.container form{
+    width: 400px;
+    height: 200px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 10px 10px 10px 0  rgba(113, 95, 194, .5);
+}
+
+.container form input{
+    height: 40px;
+    outline: none;
+    padding: 5px 10px;
+    font-size: 25px;
+    color: rgb(183, 123, 238);
+    font-weight: 600;
+    box-shadow: 10px 10px 10px 0  rgba(113, 95, 194, .5);
+    border: 2px solid rgb(183, 123, 238);
+}
+
+.container form input::placeholder{
+    font-size: 20px;
+    text-align: start;
+    font-family: serif;
+    color: rgb(183, 123, 238);
+}
+
+.container form button{
+    height: 40px;
+     outline: none;
+    padding: 5px 10px;
+    font-size: 25px;
+    color: #fff;
+    background-color: rgb(183, 123, 238);
+    font-weight: 600;
+    box-shadow: 10px 10px 10px 0  rgba(113, 95, 194, .5);
+    border: 2px solid rgb(183, 123, 238);
+}
+
+
+@media (max-width:600px){
+    .container form{
+    width: 340px;
+    height: 200px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 10px 10px 10px 0  rgba(113, 95, 194, .5);
+}
+}
