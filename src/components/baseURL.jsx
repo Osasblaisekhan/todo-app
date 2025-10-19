@@ -1,2 +1,2 @@
-const BASEURL = 'http://localhost:5001/person'
+const BASEURL = 'https://todolist-mern-stack-backend.onrender.com/person'
 export default BASEURL
