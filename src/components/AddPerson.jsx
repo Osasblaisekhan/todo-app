@@ -9,7 +9,9 @@ import './AddPerson.css';
 const AddPerson = () => {
     const [formItems, setFormItems]=useState({name:'', age:''});
     const [isEdit, setIsEdit]= useState(null);
-    const [isLoading, setIsLoading]=useState(true)
+    const [isLoading, setIsLoading]=useState(true);
+    const [isAdding, setIsAdding] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
   const [listPersons, setListPersons] = useState([]);
   console.log(listPersons)
   console.log(isEdit);
@@ -59,6 +61,14 @@ const AddPerson = () => {
       }
     }, [isEdit, listPersons]);
 
+    const ToggleText = ()=>{
+      setIsAdding(true)
+    };
+
+       const ToggleTextEdit = ()=>{
+      setIsEditing(true)
+    }
+
     const HandleAddPerson = async (e)=>{
       e.preventDefault();
       // basic validation
@@ -75,9 +85,12 @@ const AddPerson = () => {
       try{
         if(isEdit){
           await axios.put(`${BASEURL}/${isEdit}`, formItems);
+          setIsEditing(false)
           toast.success('Person updated successfully', { position: 'top-right' });
+
         } else {
           await axios.post(`${BASEURL}`, formItems);
+          setIsAdding(false);
           toast.success('Person added successfully', { position: 'top-right' });
         }
         await fetchPerson();
@@ -102,7 +115,9 @@ const AddPerson = () => {
       <form action="#" onSubmit={HandleAddPerson}>
   <input type="text" value={formItems.name} placeholder='Name' onChange={(e)=> setFormItems({...formItems, name:e.target.value})} />
   <input type="number" value={formItems.age} placeholder='Age' onChange={(e)=> setFormItems({...formItems, age:e.target.value})} />
-        <button type='submit'>{isEdit ? 'UPDATE' : 'ADD'}</button>
+       {
+        isEdit ? (<button type='submit' onClick={ToggleTextEdit}>{isEditing ? 'UPDATING...' : 'UPDATE'}</button>) : ( <button type='submit' onClick={ToggleText}>{isAdding ? 'ADDING...' : 'ADD'}</button>)
+       }
       </form>
       <DisplayPerson listPersons={listPersons} isEdit={isEdit} setIsEdit={setIsEdit} isLoading={isLoading} setIsLoading={setIsLoading} fetchPerson={fetchPerson}/>
     </div>
